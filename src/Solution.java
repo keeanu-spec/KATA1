@@ -1,4 +1,6 @@
 import java.lang.StringBuilder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
     /**
      * Class with method to work  with String
      * @method: static String toCamelCase(String s)
@@ -18,15 +20,10 @@ import java.lang.StringBuilder;
          *
          * "The_Stealth-Warrior" gets converted to "TheStealthWarrior"
          */
-        static String toCamelCase(String s) {
-            String[] words = s.split("[-_]");
-            StringBuilder result = new StringBuilder(words[0]);
-
-            for (int i = 1; i < words.length; i++) {
-                result.append(words[i].substring(0, 1).toUpperCase()).append(words[i].substring(1));
+            static String toCamelCase(String s){
+                return Pattern.compile("[-|_](.)").matcher(s).replaceAll(r -> r.group(1).toUpperCase());
             }
-
-            return result.toString();
         }
-    }
+
+
 
